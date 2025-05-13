@@ -14,7 +14,6 @@ $(document).ready(function () {
         $('.task-1 .result').text(resultArray);
     });
 
-
     $('.task-2 .do').click(function () {
         const userValue = $('.task-2 .user-input').val(); // abac
         const arrayOfSymbols = userValue.split(''); // ['a','b','a','c']
@@ -39,7 +38,7 @@ $(document).ready(function () {
         let answer = '';
         for (let index = 0; index < listWithSymbolsAndCount.length; index++) {
             const obj = listWithSymbolsAndCount[index];
-            
+
             answer += `${obj.s}: ${obj.c}; `
         }
 
@@ -52,10 +51,15 @@ $(document).ready(function () {
     ];
 
     $('.task-3 .do').click(function () {
-        const url = images[1];
-        const img = $('<img>');
-        img.attr('src', url);
-        $('.task-3 .result').append(img);
+        const newUrl = $('.task-3 .user-input').val();
+        images.push(newUrl);
+        $('.task-3 .result').empty();
+        for (let i = 0; i < images.length; i++) {
+            const url = images[i];
+            const img = $('<img>');
+            img.attr('src', url);
+            $('.task-3 .result').append(img);
+        }
     });
 
 });
