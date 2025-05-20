@@ -2,12 +2,18 @@
     width: 200px;
     height: 200px;
     display: flex;
+    overflow: hidden;
 }
 
 .box {
-    width: 200px;
+    width: 0px;
     height: 200px;
     transition: all 3s;
+}
+
+.box img {
+    max-width: 200px;
+    max-height: 200px;
 }
 
 .red {
@@ -15,6 +21,9 @@
 }
 
 .green {
-    width: 0px;
     background-color: green;
+}
+
+.isActive{
+    width: 200px;
 }

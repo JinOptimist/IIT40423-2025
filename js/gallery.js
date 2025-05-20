@@ -1,8 +1,8 @@
-$(document).ready(function(){
+$(document).ready(function () {
+    let isFirst = true;
 
-    $('.container').click(function(){
-        $('.red').css('width', 0);
-        $('.green').css('width', 200);
+    $('.container').click(function () {
+        $('.box').toggleClass('isActive');
     });
-    
+
 });
