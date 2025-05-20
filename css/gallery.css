@@ -81,16 +81,18 @@
 
     50% {
         left: 0;
-        top: 50px
+        top: 30px;
+        transform: perspective(500px) rotateX(0deg);
     }
 
     75%{
         left: 0;
-        top: -10px;
-        transform: perspective(500px) rotateX(-30deg);
+        top: -20px;
+        transform: perspective(500px) rotateX(-20deg);
     }
 
     100% {
+        transform: perspective(500px) rotateX(0deg);
         left: 0;
         top: 0;
     }
