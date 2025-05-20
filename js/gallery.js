@@ -1,8 +1,16 @@
 $(document).ready(function () {
     let images = [
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwctyTE48aLTh8txv4Tsdg53zap46VGvZJoA&s',
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_ix09HQuQHM0q-OPQBUhJAW8X-mhHS9EPOQ&s',
-        'https://m.media-amazon.com/images/I/417YwW3UwsL._AC_UF1000,1000_QL80_.jpg'
+        'images/girl01.jpg',
+        'images/girl02.jpg',
+        'images/girl03.jpg',
+
+        'images/girl04.jpg',
+        'images/girl05.jpg',
+        'images/girl06.jpg',
+
+        'images/girl07.jpg',
+        'images/girl08.jpg',
+        'images/girl09.jpg',
     ];
     init();
 
@@ -11,18 +19,26 @@ $(document).ready(function () {
     });
 
     function init() {
+        // create a copy of template and set the url for image
         images.forEach((url, index) => {
-            // craete a copy of template and set the url for image
-            const tag = $('.placeholder.template').clone();
+            // create a copy of existed tag
+            const tag = $('.gallery .placeholder.template').clone();
+            // remove class template from copy
             tag.removeClass('template');
+            // find and set src for image
             tag.find('img').attr('src', url);
+            // into copy find card
             const card = tag.find('.card');
-            card.css('top', -600);
-            card.css('left', 600);
+            // move card out of the window
+            card.css('top', -1500);
+            card.css('left', 1500);
+            // set index for the card into data attribute
             card.attr('data-index', index);
+            // add copy to the page
             $('.gallery').append(tag);
         });
 
+        // run animation with delay
         for (let i = 0; i < images.length; i++) {
             setTimeout(function () {
                 const card = $(`.card[data-index=${i}]`);
@@ -31,6 +47,9 @@ $(document).ready(function () {
             }, 300 * (i + 1));
 
         }
+
+        // comand to show button
+
     }
 
 });
