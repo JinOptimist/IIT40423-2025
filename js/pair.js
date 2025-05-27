@@ -1,5 +1,13 @@
 $(document).ready(function () {
-    const countOfPairs = 5;
+    const countOfPairs = 3; // * 3 + 1
+
+    let numberOfOpenCard = undefined;
+
+    let stepCount = 0;
+    let maxStep = countOfPairs % 2 == 0
+        ? countOfPairs * 3
+        : countOfPairs * 3 + 1;
+
     let imagesFromDatabase = [
         'images/girl01.jpg',
         'images/girl02.jpg',
@@ -30,14 +38,19 @@ $(document).ready(function () {
 
         // Step 3. Create tag for each elements from imagesForGame
         for (let i = 0; i < imagesForGame.length; i++) {
-            createCard(imagesForGame[i]);
+            const url = imagesForGame[i];
+            const number = imagesFromDatabase.indexOf(url);
+            createCard(url, number);
         }
+
+        $('.max-steps-count').text(maxStep);
     }
 
-    function createCard(url) {
+    function createCard(url, number) {
         const card = $('.card.template').clone();
         card.removeClass('template');
         card.find('.face img').attr('src', url);
+        card.attr('data-number', number);
         $('.desc').append(card);
     }
 
@@ -60,7 +73,43 @@ $(document).ready(function () {
 
     $('.card').click(function () {
         // this is card for which user clicked
-        $(this).find('.face').toggle();
-        $(this).find('.cover').toggle();
+        if ($(this).hasClass('finded')){
+            return;
+        }
+
+
+        // case 1. No open card on desc
+        if (numberOfOpenCard == undefined) {
+            numberOfOpenCard = $(this).attr('data-number');
+
+            $(this).find('.face').toggle();
+            $(this).find('.cover').toggle();
+        } else {
+            // numberOfOpenCard != undefined
+            // case 2. One card is open
+            $(this).find('.face').toggle();
+            $(this).find('.cover').toggle();
+            
+            const currentCardNumber = $(this).attr('data-number');
+            // wait 0.5 sec
+            setTimeout(function () {
+                // comaper numberOfOpenCard and number of current card
+                if (numberOfOpenCard == currentCardNumber) {
+                    // cards is the same
+                    // mark cards as opened
+                    $(`[data-number=${numberOfOpenCard}]`).addClass('finded');
+                } else {
+                    // cards is diff
+                    // hide card
+                    $('.cover').show();
+                    $('.face').hide();
+                }
+
+                numberOfOpenCard = undefined
+            }, 1000);
+        }
+
+        stepCount++;
+        $('.steps-count').text(stepCount);
     });
 });
