@@ -1,0 +1,26 @@
+.desc {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card.template {
+    display: none;
+}
+
+.card {
+    width: 200px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc;
+    border-radius: 10px;
+    margin: 5px;
+
+    font-size: 80px;
+}
+
+.face{
+    display: none;
+}
+

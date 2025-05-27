@@ -19,6 +19,22 @@ $(document).ready(function () {
     });
 
     function init() {
+
+
+        // comand to show button
+
+    }
+
+    $('.get-images').click(function () {
+        addImagesToGallery();
+    });
+
+    $('.fly-images').click(function(){
+        $('.task .fly img').attr('src', 'images/girl04.jpg');
+        $('.task .fly').css('animation', 'image-fly 5s');
+    });
+
+    function addImagesToGallery() {
         // create a copy of template and set the url for image
         images.forEach((url, index) => {
             // create a copy of existed tag
@@ -47,9 +63,5 @@ $(document).ready(function () {
             }, 300 * (i + 1));
 
         }
-
-        // comand to show button
-
     }
-
 });

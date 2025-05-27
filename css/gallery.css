@@ -67,9 +67,9 @@
 
 .fly .card {
     position: relative;
-    left: 500px;
+    /* left: 500px; */
     top: 0;
-    animation: image-fly 5s;
+    /* animation: image-fly 5s; */
     animation-timing-function: ease;
     animation-fill-mode: both;
 }
@@ -77,6 +77,7 @@
 @keyframes image-fly {
     0% {
         left: 500px;
+        top: -600px;
     }
 
     50% {
