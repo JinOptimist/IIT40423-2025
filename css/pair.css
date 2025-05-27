@@ -18,6 +18,8 @@
     margin: 5px;
 
     font-size: 80px;
+
+    transition: opacity 1.5s;
 }
 .cover,
 .face{
@@ -31,22 +33,22 @@
 .cover {
     position: absolute;
     transform: rotateY(0deg);
-    animation: show-card-side 2s 2s both;
+    animation: show-card-side 1s 1s both;
 }
 
 .face {
     transform: rotateY(90deg);
-    animation: hide-card-side 2s both;
+    animation: hide-card-side 1s both;
 }
 
 .card.open .face,
 .card.finded .face {
-    animation: show-card-side 2s 2s both;
+    animation: show-card-side 1s 1s both;
 }
 
 .card.open .cover,
 .card.finded .cover {
-    animation: hide-card-side 2s both;
+    animation: hide-card-side 1s both;
 }
 
 .card img {

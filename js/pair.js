@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    const animationDelay = 4 * 1000;
-    const countOfPairs = 5;
+    const animationDelay = 2 * 1000; // animation speed in css == 1s
+    let countOfPairs = 5;
     let numberOfOpenedCard = undefined;
     let countOfSteps = 0;
     let maxSteps = countOfPairs % 2 == 0
@@ -23,9 +23,31 @@ $(document).ready(function () {
 
     let imagesForGame = [];
 
-    init();
+    $('.start').click(function () {
+        if ($(this).hasClass('easy')) {
+            countOfPairs = 2;
+        }
+        if ($(this).hasClass('medium')) {
+            countOfPairs = 3;
+        }
+        if ($(this).hasClass('hard')) {
+            countOfPairs = 5;
+        }
+        init();
+    });
 
     function init() {
+        // Step 0. Reset all variabels
+        imagesForGame = [];
+        numberOfOpenedCard = undefined;
+        maxSteps = countOfPairs % 2 == 0
+            ? countOfPairs * 3
+            : countOfPairs * 3 + 1;
+        countOfSteps = 0;
+        const template = $('.card.template');
+        $('.desc').empty();
+        $('.desc').append(template);
+        
         // Step 1. build imagesForGame array from imagesFromDatabase
         for (let i = 0; i < countOfPairs; i++) {
             imagesForGame.push(imagesFromDatabase[i]);
@@ -42,7 +64,9 @@ $(document).ready(function () {
             createCard(url, number);
         }
 
+        
         $('.max-steps-count').text(maxSteps);
+        $('.card').click(onCardClick);
     }
 
     function createCard(url, number) {
@@ -70,12 +94,11 @@ $(document).ready(function () {
         return Math.floor(Math.random() * max);
     }
 
-    $('.card').click(function () {
+    function onCardClick() {
         // this is card for which user clicked
-        if ($(this).hasClass('finded')){
+        if ($(this).hasClass('finded')) {
             return;
         }
-
 
         // case 1. No open card on desc
         if (numberOfOpenedCard == undefined) {
@@ -101,11 +124,11 @@ $(document).ready(function () {
                     $('.open').removeClass('open');
                 }
 
-                numberOfOpenedCard = undefined
+                numberOfOpenedCard = undefined;
             }, animationDelay);
         }
 
         countOfSteps++;
         $('.steps-count').text(countOfSteps);
-    });
+    }
 });
