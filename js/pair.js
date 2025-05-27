@@ -1,10 +1,9 @@
 $(document).ready(function () {
-    const countOfPairs = 3; // * 3 + 1
-
-    let numberOfOpenCard = undefined;
-
-    let stepCount = 0;
-    let maxStep = countOfPairs % 2 == 0
+    const animationDelay = 4 * 1000;
+    const countOfPairs = 5;
+    let numberOfOpenedCard = undefined;
+    let countOfSteps = 0;
+    let maxSteps = countOfPairs % 2 == 0
         ? countOfPairs * 3
         : countOfPairs * 3 + 1;
 
@@ -43,7 +42,7 @@ $(document).ready(function () {
             createCard(url, number);
         }
 
-        $('.max-steps-count').text(maxStep);
+        $('.max-steps-count').text(maxSteps);
     }
 
     function createCard(url, number) {
@@ -79,37 +78,34 @@ $(document).ready(function () {
 
 
         // case 1. No open card on desc
-        if (numberOfOpenCard == undefined) {
-            numberOfOpenCard = $(this).attr('data-number');
+        if (numberOfOpenedCard == undefined) {
+            numberOfOpenedCard = $(this).attr('data-number');
 
-            $(this).find('.face').toggle();
-            $(this).find('.cover').toggle();
+            $(this).addClass('open');
         } else {
             // numberOfOpenCard != undefined
             // case 2. One card is open
-            $(this).find('.face').toggle();
-            $(this).find('.cover').toggle();
-            
+            $(this).addClass('open');
+
             const currentCardNumber = $(this).attr('data-number');
             // wait 0.5 sec
             setTimeout(function () {
                 // comaper numberOfOpenCard and number of current card
-                if (numberOfOpenCard == currentCardNumber) {
+                if (numberOfOpenedCard == currentCardNumber) {
                     // cards is the same
                     // mark cards as opened
-                    $(`[data-number=${numberOfOpenCard}]`).addClass('finded');
+                    $(`[data-number=${numberOfOpenedCard}]`).addClass('finded');
                 } else {
                     // cards is diff
                     // hide card
-                    $('.cover').show();
-                    $('.face').hide();
+                    $('.open').removeClass('open');
                 }
 
-                numberOfOpenCard = undefined
-            }, 1000);
+                numberOfOpenedCard = undefined
+            }, animationDelay);
         }
 
-        stepCount++;
-        $('.steps-count').text(stepCount);
+        countOfSteps++;
+        $('.steps-count').text(countOfSteps);
     });
 });

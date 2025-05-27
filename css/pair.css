@@ -8,8 +8,8 @@
 }
 
 .card {
-    width: 200px;
-    height: 300px;
+    width: 400px;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,9 +19,34 @@
 
     font-size: 80px;
 }
+.cover,
+.face{
+    width: 400px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cover {
+    position: absolute;
+    transform: rotateY(0deg);
+    animation: show-card-side 2s 2s both;
+}
 
 .face {
-    display: none;
+    transform: rotateY(90deg);
+    animation: hide-card-side 2s both;
+}
+
+.card.open .face,
+.card.finded .face {
+    animation: show-card-side 2s 2s both;
+}
+
+.card.open .cover,
+.card.finded .cover {
+    animation: hide-card-side 2s both;
 }
 
 .card img {
@@ -31,4 +56,24 @@
 
 .card.finded {
     opacity: 0.5;
+}
+
+@keyframes show-card-side {
+    0% {
+        transform: rotateY(90deg);
+    }
+
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+
+@keyframes hide-card-side {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(90deg);
+    }
 }
