@@ -1,5 +1,7 @@
 .carusel {
     display: flex;
+    align-items: center;
+    height: 300px;
 }
 
 .image-container {
@@ -11,9 +13,18 @@
     transition: all 2s;
 }
 
+.prev,
+.next {
+    width: 150px;
+    height: 150px;
+    border: 2px red solid;
+}
+
 .before-prev,
 .after-next {
     width: 0;
+    height: 0;
+    border: 2px green solid;
 }
 
 /* .center{
