@@ -3,11 +3,14 @@ $(document).ready(function () {
     const halfSize = 150;
     const animationSpeed = 2;
     const images = [];
-    let currentImageIndex = 0;
+    let centerImageIndex = 3;
 
     initImages();
+    setAllSizeToDefault();
 
     $('.next').click(function () {
+        centerImageIndex = getSafeIndex(centerImageIndex + 1);
+
         // run animation
         setWidthAndHeight('.prev', 0);
         setWidthAndHeight('.center', halfSize);
@@ -19,7 +22,7 @@ $(document).ready(function () {
     })
 
     function initImages() {
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 5; i++) {
             images.push(`images/girl-wide-0${i + 1}.jpg`);
         }
     }
@@ -32,7 +35,7 @@ $(document).ready(function () {
         setWidthAndHeight('.center', fullSize);
         setWidthAndHeight('.next', halfSize);
         setWidthAndHeight('.after-next', 0);
-        
+
         moveAllImages();
 
         setTimeout(function () {
@@ -40,15 +43,35 @@ $(document).ready(function () {
         }, 100);
     }
 
-    function moveAllImages(){
-        moveImage('.prev', '.before-prev');
-        moveImage('.center', '.prev');
-        moveImage('.next', '.center');
-        moveImage('.after-next', '.next');
-        
-        const url = images[currentImageIndex];
-        $('.after-next').find('img').attr('src', url);
-        currentImageIndex++;
+    function moveAllImages() {
+        // moveImage('.prev', '.before-prev');
+        // moveImage('.center', '.prev');
+        // moveImage('.next', '.center');
+        // moveImage('.after-next', '.next');
+
+        setImageByIndex('.before-prev', centerImageIndex - 2);
+        setImageByIndex('.prev', centerImageIndex - 1);
+        setImageByIndex('.center', centerImageIndex);
+        setImageByIndex('.next', centerImageIndex + 1);
+        setImageByIndex('.after-next', centerImageIndex + 2);
+    }
+
+    function setImageByIndex(selector, index) {
+        const safeIndex = getSafeIndex(index);
+        const url = images[safeIndex];
+        $(selector).find('img').attr('src', url);
+    }
+
+    function getSafeIndex(index) {
+        if (index >= images.length) {
+            return index - images.length;
+        }
+
+        if (index < 0) {
+            return index + images.length;
+        }
+
+        return index;
     }
 
     function moveImage(fromSelector, toSelector) {
