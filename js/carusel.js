@@ -22,9 +22,16 @@ $(document).ready(function () {
         setWidthAndHeight('.next', halfSize);
         setWidthAndHeight('.after-next', 0);
 
+        moveImage('.next', '.center');
+
         setTimeout(function(){
             $('.image-container').css('transition', `all ${animationSpeed}s`);
         }, 100);
+    }
+
+    function moveImage(fromSelector, toSelector){
+        const url = $(fromSelector).find('img').attr('src');
+        $(toSelector).find('img').attr('src', url);
     }
 
     function setWidthAndHeight(blockSelector, widthAndHeight) {
