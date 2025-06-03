@@ -1,5 +1,6 @@
 .carusel {
     display: flex;
+    justify-content: center;
     align-items: center;
     height: 300px;
 }
@@ -17,6 +18,7 @@
 .next {
     width: 150px;
     height: 150px;
+    cursor: pointer;
     /* border: 2px red solid; */
 }
 
@@ -24,17 +26,30 @@
 .after-next {
     width: 0;
     height: 0;
-    /* border: 2px green solid; */
 }
-
-/* .center{
-    width: 300px;
-    height: 300px;
-} */
 
 .image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 20px;
+}
+
+.dots {
+    display: flex;
+    justify-content: center;
+}
+
+.dot {
+    border-radius: 20px;
+    border: 3px solid green;
+    width: 5px;
+    height: 5px;
+    display: flex;
+    margin: 2px;
+    transition: all 2s;
+}
+
+.dot.active {
+    border-color: red;
 }

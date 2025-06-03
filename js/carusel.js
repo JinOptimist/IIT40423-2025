@@ -10,6 +10,9 @@ $(document).ready(function () {
 
     $('.next').click(function () {
         centerImageIndex = getSafeIndex(centerImageIndex + 1);
+        
+        $('.dot').removeClass('active')
+        $(`.dot[data-number=${centerImageIndex}]`).addClass('active');
 
         // run animation
         setWidthAndHeight('.prev', 0);
@@ -19,11 +22,36 @@ $(document).ready(function () {
 
         // return to initial state
         setTimeout(setAllSizeToDefault, animationSpeed * 1000);
-    })
+    });
+
+    $('.prev').click(function () {
+        centerImageIndex = getSafeIndex(centerImageIndex - 1);
+
+        $('.dot').removeClass('active')
+        $(`.dot[data-number=${centerImageIndex}]`).addClass('active');
+
+        // run animation
+        setWidthAndHeight('.before-prev', halfSize);
+        setWidthAndHeight('.prev', fullSize);
+        setWidthAndHeight('.center', halfSize);
+        setWidthAndHeight('.next', 0);
+
+        // return to initial state
+        setTimeout(setAllSizeToDefault, animationSpeed * 1000);
+    });
 
     function initImages() {
         for (let i = 0; i < 5; i++) {
             images.push(`images/girl-wide-0${i + 1}.jpg`);
+        }
+
+        for (let i = 0; i < 9; i++) {
+            images.push(`images/girl0${i + 1}.jpg`);
+        }
+
+        for (let i = 0; i < images.length; i++) {
+            const dotTag = $(`<i class='dot' data-number=${i}></i>`)
+            $('.dots').append(dotTag);
         }
     }
 
@@ -82,5 +110,13 @@ $(document).ready(function () {
     function setWidthAndHeight(blockSelector, widthAndHeight) {
         $(blockSelector).css('width', widthAndHeight);
         $(blockSelector).css('height', widthAndHeight);
+
+        if (widthAndHeight == 0) {
+            $(blockSelector).css('margin', 0);
+        } else {
+            $(blockSelector).css('margin', 5);
+        }
+
+
     }
 })
