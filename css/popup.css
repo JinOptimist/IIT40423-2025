@@ -1,0 +1,55 @@
+.image {
+    max-width: 600px;
+    max-height: 500px;
+    border-radius: 20px;
+    margin: 5px;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup .cover {
+    background-color: #000;
+    opacity: .3;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+}
+
+.popup .content {
+    width: 1200px;
+    height: 600px;
+    z-index: 10;
+    background-color: #fff;
+    position: relative;
+    border-radius: 10px;
+}
+
+.popup .content .header {
+    background: #ccc;
+    height: 30px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    cursor: grab;
+}
+
+.popup .content .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 7px;
+    font-size: 25px;
+    cursor: pointer;
+}
