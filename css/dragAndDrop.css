@@ -43,7 +43,7 @@ body, html {
     padding: 18px;
     border-radius: 14px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Замедленная анимация */
     overflow: hidden;
     opacity: 0.95;
 }
@@ -56,12 +56,9 @@ body, html {
 }
 
 .image-container img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
-    border: 2px solid rgba(255, 255, 255, 0.18);
-    transition: transform 0.35s ease;
+    object-fit: cover;
+    width: 100%;
+    height: 200px; /* Фиксированная высота для всех изображений */
 }
 
 .image-container:hover img {
@@ -75,6 +72,7 @@ body, html {
     font-weight: 600;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     letter-spacing: 0.5px;
+    transition: all 0.8s ease; /* Замедленная анимация */
 }
 
 .nav-buttons {
@@ -100,7 +98,7 @@ body, html {
     align-items: center;
     justify-content: center;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Замедленная анимация */
 }
 
 .nav-button:hover {
