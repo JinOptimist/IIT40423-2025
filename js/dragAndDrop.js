@@ -49,6 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         isAnimating = true;
         const imageToMove = images[0];
+        const nameElement = imageToMove.querySelector('p');
+        const originalName = nameElement.textContent;
         
         // Создаем клон для анимации
         const clone = imageToMove.cloneNode(true);
@@ -67,22 +69,50 @@ document.addEventListener('DOMContentLoaded', () => {
         
         document.body.appendChild(clone);
         
-        // Скрываем оригинал, но сохраняем его размеры
+        // Скрываем оригинал
         imageToMove.style.opacity = '0';
         imageToMove.style.visibility = 'hidden';
+        
+        // Создаем плейсхолдер в целевом блоке
+        const placeholder = document.createElement('div');
+        placeholder.style.height = `${rect.height}px`;
+        placeholder.style.marginBottom = '25px';
+        placeholder.style.opacity = '0';
+        placeholder.style.transition = 'all 1.8s ease';
+        targetBlock.insertBefore(placeholder, targetBlock.firstChild);
+        
+        // Анимируем появление плейсхолдера
+        setTimeout(() => {
+            placeholder.style.opacity = '1';
+        }, 10);
         
         // Рассчитываем конечную позицию
         setTimeout(() => {
             // Удаляем оригинал из исходного блока
             sourceBlock.removeChild(imageToMove);
             
+            // Удаляем плейсхолдер
+            placeholder.style.height = '0';
+            placeholder.style.marginBottom = '0';
+            placeholder.style.opacity = '0';
+            
             // Добавляем в начало целевого блока
             targetBlock.insertBefore(imageToMove, targetBlock.firstChild);
+            
+            // Восстанавливаем оригинальное имя
+            nameElement.textContent = originalName;
             
             // Показываем оригинал в новом положении
             setTimeout(() => {
                 imageToMove.style.opacity = '1';
                 imageToMove.style.visibility = 'visible';
+                
+                // Удаляем плейсхолдер после анимации
+                setTimeout(() => {
+                    if (placeholder.parentNode) {
+                        placeholder.parentNode.removeChild(placeholder);
+                    }
+                }, 1800);
             }, 50);
             
             // Позиция для клона
