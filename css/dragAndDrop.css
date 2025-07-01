@@ -1,0 +1,115 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1f2d, #2a3349);
+    color: #f0f8ff;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+    position: relative;
+}
+
+.block {
+    width: 300px;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+}
+
+.block-left {
+    background: rgba(52, 73, 94, 0.85);
+    backdrop-filter: blur(8px);
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.block-right {
+    background: rgba(44, 62, 80, 0.85);
+    backdrop-filter: blur(8px);
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    margin-left: auto;
+}
+
+.image-container {
+    margin-bottom: 25px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.09);
+    padding: 18px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+    opacity: 0.95;
+}
+
+.image-container:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+    opacity: 1;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+    border: 2px solid rgba(255, 255, 255, 0.18);
+    transition: transform 0.35s ease;
+}
+
+.image-container:hover img {
+    transform: scale(1.05);
+}
+
+.image-container p {
+    margin-top: 15px;
+    color: #e6f7ff;
+    font-size: 18px;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.5px;
+}
+
+.nav-buttons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 45px;
+    z-index: 100;
+}
+
+.nav-button {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #3498db, #2c7bb9);
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-button:hover {
+    background: linear-gradient(135deg, #2c7bb9, #3498db);
+    transform: scale(1.2);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.75);
+}
+
+.nav-button:active {
+    transform: scale(0.9);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
