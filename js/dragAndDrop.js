@@ -65,12 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
         clone.style.transition = 'all 1.8s cubic-bezier(0.22, 0.61, 0.36, 1)';
         clone.style.pointerEvents = 'none';
         
-        // Сохраняем оригинальные размеры изображения
-        const img = clone.querySelector('img');
-        img.style.width = `${img.width}px`;
-        img.style.height = `${img.height}px`;
-        img.style.maxWidth = 'none';
-        
         document.body.appendChild(clone);
         
         // Скрываем оригинал, но сохраняем его размеры
@@ -84,20 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Добавляем в начало целевого блока
             targetBlock.insertBefore(imageToMove, targetBlock.firstChild);
-            
-            // Обновляем классы подписи в зависимости от блока
-            const nameElement = imageToMove.querySelector('p');
-            if (targetBlock.classList.contains('block-left')) {
-                nameElement.className = 'anime-name';
-                // Устанавливаем случайное аниме имя
-                const randomIndex = Math.floor(Math.random() * animeNames.length);
-                nameElement.textContent = animeNames[randomIndex];
-            } else {
-                nameElement.className = 'female-name';
-                // Устанавливаем случайное женское имя
-                const randomIndex = Math.floor(Math.random() * femaleNames.length);
-                nameElement.textContent = femaleNames[randomIndex];
-            }
             
             // Показываем оригинал в новом положении
             setTimeout(() => {
